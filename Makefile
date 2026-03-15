@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+         #
+#    By: adrocha <adrocha@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/10 22:03:59 by adrocha-          #+#    #+#              #
-#    Updated: 2026/03/13 19:13:53 by adrocha-         ###   ########.fr        #
+#    Updated: 2026/03/15 13:51:54 by adrocha          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ OBJ_DIR = obj
 SRCS = 	main.c \
 		parsing.c \
 		utils.c \
+		initialization.c \
 
 SRC_FILES = $(addprefix $(SRC_DIR)/, $(SRCS))
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
