@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrocha <adrocha@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 22:05:21 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/15 13:51:29 by adrocha          ###   ########.fr       */
+/*   Updated: 2026/03/16 23:39:52 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,15 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <sys/time.h>
 # include <unistd.h>
 
-typedef struct s_philo	t_philo;
+# define HERE printf("HERE\n")
 
-typedef struct s_table
+typedef struct s_philo	t_philo;
+typedef struct s_table	t_table;
+
+struct					s_table
 {
 	int					num_of_philo;
 	int					time_to_die;
@@ -30,9 +34,10 @@ typedef struct s_table
 	int					must_eat_count;
 	t_philo				*philos;
 	pthread_mutex_t		*forks;
-}						t_table;
+	long				start_time;
+};
 
-typedef struct s_philo
+struct					s_philo
 {
 	int					id;
 	pthread_t			thread;
@@ -41,7 +46,8 @@ typedef struct s_philo
 	long				last_meal;
 	int					meals_eaten;
 	t_table				*table;
-}						t_philo;
+};
+
 
 int						ft_atoi(const char *str);
 int						ft_isnum(int c);
@@ -49,5 +55,8 @@ int						parsing(int ac, char *av[]);
 void					init_table(t_table *table, char *av[]);
 void					init_philos(t_table *table);
 void					init_forks(t_table *table);
+void					philo_routine(t_philo *philo);
+long					get_time(void);
+long					timestamp(long time);
 
 #endif

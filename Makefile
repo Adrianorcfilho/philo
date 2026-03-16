@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adrocha <adrocha@student.42.fr>            +#+  +:+       +#+         #
+#    By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/10 22:03:59 by adrocha-          #+#    #+#              #
-#    Updated: 2026/03/15 13:51:54 by adrocha          ###   ########.fr        #
+#    Updated: 2026/03/16 23:22:13 by adrocha-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g 
+CFLAGS = #-Wall -Wextra -Werror -g 
 RM = rm -f
 
 SRC_DIR = src
@@ -23,6 +23,7 @@ SRCS = 	main.c \
 		parsing.c \
 		utils.c \
 		initialization.c \
+		time.c \
 
 SRC_FILES = $(addprefix $(SRC_DIR)/, $(SRCS))
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
