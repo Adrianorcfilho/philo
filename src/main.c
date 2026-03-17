@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 20:19:24 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/16 23:44:43 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/17 18:38:56 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,8 @@ void	philo_thinking(t_philo *philo)
 	t_table	*table;
 
 	table = philo->table;
-
-	printf("%p\n", table);
-	printf("%ld\n", table->start_time);
 	printf("%d\n", philo->id);
 	printf("%ld %d is thinking\n", timestamp(table->start_time), philo->id);
-	HERE;
 }
 
 void	philo_lock_forks(t_philo *philo)
@@ -45,7 +41,7 @@ void	philo_eating(t_philo *philo)
 	table = philo->table;
 	philo->last_meal = timestamp(table->start_time);
 	philo->meals_eaten += 1;
-	usleep(table->time_to_eat);
+	usleep(table->time_to_eat  *1000);
 	printf("%ld %d is eating\n", timestamp(table->start_time), philo->id);
 }
 
@@ -64,7 +60,7 @@ void	philo_sleeps(t_philo *philo)
 
 	table = philo->table;
 	printf("%ld %d is sleeping\n", timestamp(table->start_time), philo->id);
-	usleep(table->time_to_sleep);
+	usleep(table->time_to_sleep * 1000);
 }
 
 void	philo_routine(t_philo *philo)
@@ -79,6 +75,8 @@ void	philo_routine(t_philo *philo)
 		// {
 		// 	// adicionar condicao para quando tenho eat_count
 		// }
+		// if (philo->id % 2 == 0)
+		// 	usleep(100);
 		philo_thinking(philo);
 		philo_lock_forks(philo);
 		philo_eating(philo);
@@ -96,7 +94,12 @@ void	creat_new_thread(t_table *table)
 	{
 		pthread_create(&table->philos[i].thread, NULL, (void *)philo_routine,
 			&table->philos[i]);
-		// pthread_join(table->philos[i].thread, NULL);
+		i++;
+	}
+	i = 0;
+	while (i < table->num_of_philo)
+	{
+		pthread_join(table->philos[i].thread, NULL);
 		i++;
 	}
 }

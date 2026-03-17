@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 20:16:30 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/12 20:40:03 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/17 15:24:21 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	parsing(int ac, char *av[])
 		j = 0;
 		while (av[i][j])
 		{
-			if (!ft_isnum(av[i][j]))
+			if (av[i][0] != '+' && (!ft_isnum(av[i][j])))
 				return (0);
 			j++;
 		}

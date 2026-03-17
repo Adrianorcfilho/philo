@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 22:05:21 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/16 23:39:52 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/17 18:19:30 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <unistd.h>
 
 # define HERE printf("HERE\n")
+
+
 
 typedef struct s_philo	t_philo;
 typedef struct s_table	t_table;
