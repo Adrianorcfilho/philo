@@ -6,11 +6,11 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 19:46:17 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/12 20:40:07 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/17 19:04:41 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../includes/philo.h"
 
 int	ft_atoi(const char *str)
 {

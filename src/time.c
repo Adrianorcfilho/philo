@@ -6,11 +6,11 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 20:58:02 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/16 23:10:44 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/17 19:04:37 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../includes/philo.h"
 
 long	get_time(void)
 {

@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 22:05:21 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/17 18:19:30 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/17 18:59:06 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 # include <unistd.h>
 
 # define HERE printf("HERE\n")
-
-
 
 typedef struct s_philo	t_philo;
 typedef struct s_table	t_table;
@@ -50,7 +48,6 @@ struct					s_philo
 	t_table				*table;
 };
 
-
 int						ft_atoi(const char *str);
 int						ft_isnum(int c);
 int						parsing(int ac, char *av[]);
@@ -60,5 +57,12 @@ void					init_forks(t_table *table);
 void					philo_routine(t_philo *philo);
 long					get_time(void);
 long					timestamp(long time);
+void					philo_thinking(t_philo *philo);
+void					philo_lock_forks(t_philo *philo);
+void					philo_eating(t_philo *philo);
+void					philo_unlock_forks(t_philo *philo);
+void					philo_sleeps(t_philo *philo);
+void					philo_routine(t_philo *philo);
+void					creat_new_thread(t_table *table);
 
 #endif

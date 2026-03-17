@@ -6,11 +6,11 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 20:16:30 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/17 15:24:21 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/17 19:04:29 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../includes/philo.h"
 
 int	parsing(int ac, char *av[])
 {

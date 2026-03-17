@@ -6,11 +6,11 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 13:50:07 by adrocha           #+#    #+#             */
-/*   Updated: 2026/03/16 23:42:22 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/17 19:04:21 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../includes/philo.h"
 
 void	init_table(t_table *table, char *av[])
 {
