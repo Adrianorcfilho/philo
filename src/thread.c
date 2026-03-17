@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 18:56:41 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/17 19:04:08 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/17 19:21:23 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	philo_routine(t_philo *philo)
 		// {
 		// 	// adicionar condicao para quando tenho eat_count
 		// }
-		// if (philo->id % 2 == 0)
-		// 	usleep(100);
+		if (philo->id % 2 == 0)
+			usleep(100);
 		philo_thinking(philo);
 		philo_lock_forks(philo);
 		philo_eating(philo);

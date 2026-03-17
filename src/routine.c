@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 18:55:28 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/17 19:04:32 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/17 19:22:16 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	philo_eating(t_philo *philo)
 	table = philo->table;
 	philo->last_meal = timestamp(table->start_time);
 	philo->meals_eaten += 1;
-	usleep(table->time_to_eat * 1000);
 	printf("%ld %d is eating\n", timestamp(table->start_time), philo->id);
+	usleep(table->time_to_eat * 1000);
 }
 
 void	philo_unlock_forks(t_philo *philo)
