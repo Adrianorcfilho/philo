@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 13:50:07 by adrocha           #+#    #+#             */
-/*   Updated: 2026/03/17 19:04:21 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/21 20:13:24 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_table(t_table *table, char *av[])
 {
+	table->simulation_end = 0;
 	table->num_of_philo = atoi(av[1]);
 	table->time_to_die = atoi(av[2]);
 	table->time_to_eat = atoi(av[3]);
@@ -59,4 +60,9 @@ void	init_forks(t_table *table)
 		pthread_mutex_init(&table->forks[i], NULL);
 		i++;
 	}
+}
+
+void	init_mutex(t_table *table)
+{
+	pthread_mutex_init(&table->write_mutex, NULL);
 }

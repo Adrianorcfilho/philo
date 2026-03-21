@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 22:05:21 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/17 18:59:06 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/21 21:45:37 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-# define HERE printf("HERE\n")
-
 typedef struct s_philo	t_philo;
 typedef struct s_table	t_table;
 
@@ -34,7 +32,9 @@ struct					s_table
 	int					must_eat_count;
 	t_philo				*philos;
 	pthread_mutex_t		*forks;
+	pthread_mutex_t		write_mutex;
 	long				start_time;
+	int					simulation_end;
 };
 
 struct					s_philo
@@ -54,7 +54,7 @@ int						parsing(int ac, char *av[]);
 void					init_table(t_table *table, char *av[]);
 void					init_philos(t_table *table);
 void					init_forks(t_table *table);
-void					philo_routine(t_philo *philo);
+void					init_mutex(t_table *table);
 long					get_time(void);
 long					timestamp(long time);
 void					philo_thinking(t_philo *philo);
@@ -62,7 +62,9 @@ void					philo_lock_forks(t_philo *philo);
 void					philo_eating(t_philo *philo);
 void					philo_unlock_forks(t_philo *philo);
 void					philo_sleeps(t_philo *philo);
-void					philo_routine(t_philo *philo);
+void					*watcher_routine(void *arg);
+void					*philo_routine(void *arg);
 void					creat_new_thread(t_table *table);
+void					sleep_or_wait(t_philo *philo, long duration_ms);
 
 #endif

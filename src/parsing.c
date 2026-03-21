@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 20:16:30 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/17 19:04:29 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/21 20:31:05 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	parsing(int ac, char *av[])
 {
-	int i;
-	int c;
-	int j;
+	int	i;
+	int	c;
+	int	j;
 
 	if (ac < 5 || ac > 6)
 		return (0);

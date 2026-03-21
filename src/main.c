@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 20:19:24 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/17 19:04:25 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/21 21:15:19 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int ac, char *av[])
 	static t_table	table;
 
 	table.start_time = get_time();
-	printf("%p\n", &table);
 	if (!parsing(ac, av))
 	{
 		printf("Error:\n");
@@ -26,6 +25,7 @@ int	main(int ac, char *av[])
 	init_table(&table, av);
 	init_philos(&table);
 	init_forks(&table);
+	init_mutex(&table);
 	creat_new_thread(&table);
 	sleep(2);
 	return (0);

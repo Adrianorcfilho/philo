@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 20:58:02 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/17 19:04:37 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/21 20:30:58 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,3 @@ long	timestamp(long time)
 {
 	return (get_time() - time);
 }
-
