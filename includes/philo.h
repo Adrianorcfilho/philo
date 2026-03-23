@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 22:05:21 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/21 21:45:37 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/23 22:41:09 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ struct					s_table
 	t_philo				*philos;
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		write_mutex;
+	pthread_mutex_t		mutex_meal;
+	pthread_mutex_t		mutex_end;
 	long				start_time;
 	int					simulation_end;
 };
@@ -50,6 +52,7 @@ struct					s_philo
 
 int						ft_atoi(const char *str);
 int						ft_isnum(int c);
+int						ft_strcmp(const char *s1, const char *s2);
 int						parsing(int ac, char *av[]);
 void					init_table(t_table *table, char *av[]);
 void					init_philos(t_table *table);
@@ -66,5 +69,7 @@ void					*watcher_routine(void *arg);
 void					*philo_routine(void *arg);
 void					creat_new_thread(t_table *table);
 void					sleep_or_wait(t_philo *philo, long duration_ms);
+void					safe_printf(t_philo *philo, char *msg);
+int						check_simulation_end(t_table *table);
 
 #endif

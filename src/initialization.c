@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 13:50:07 by adrocha           #+#    #+#             */
-/*   Updated: 2026/03/21 20:13:24 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/23 21:41:40 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,7 @@ void	init_forks(t_table *table)
 void	init_mutex(t_table *table)
 {
 	pthread_mutex_init(&table->write_mutex, NULL);
+	pthread_mutex_init(&table->mutex_meal, NULL);
+	pthread_mutex_init(&table->mutex_end, NULL);
 }
+

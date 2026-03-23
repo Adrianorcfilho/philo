@@ -6,34 +6,45 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 18:56:41 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/21 21:50:42 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/23 22:29:59 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
+long	get_last_meal(t_table *table, int i)
+{
+	long	last_meal_time;
+
+	pthread_mutex_lock(&table->mutex_meal);
+	last_meal_time = table->philos[i].last_meal;
+	pthread_mutex_unlock(&table->mutex_meal);
+	return (last_meal_time);
+}
+
 void	*watcher_routine(void *arg)
 {
 	t_table	*table;
+	t_philo	*philo;
 	int		i;
+	long	last_meal_time;
 
 	table = (t_table *)arg;
 	while (!table->simulation_end)
 	{
-		i = 0;
-		while (i < table->num_of_philo)
+		i = -1;
+		while (++i < table->num_of_philo)
 		{
+			last_meal_time = get_last_meal(table, i);
+			philo = &table->philos[i];
 			if ((timestamp(table->start_time)
-					- table->philos[i].last_meal) >= table->time_to_die)
+					- last_meal_time) >= table->time_to_die)
 			{
-				pthread_mutex_lock(&table->write_mutex);
-				printf("%ld %d is died\n", timestamp(table->start_time),
-					table->philos[i].id);
-				pthread_mutex_unlock(&table->write_mutex);
+				pthread_mutex_lock(&table->mutex_end);
 				table->simulation_end = 1;
-				return (NULL);
+				pthread_mutex_unlock(&table->mutex_end);
+				return (safe_printf(philo, "died"), NULL);
 			}
-			i++;
 		}
 		usleep(100);
 	}
@@ -42,8 +53,9 @@ void	*watcher_routine(void *arg)
 
 void	sleep_or_wait(t_philo *philo, long duration_ms)
 {
-	long	start = get_time();
+	long	start;
 
+	start = get_time();
 	while (!philo->table->simulation_end && (get_time() - start < duration_ms))
 		usleep(100);
 }

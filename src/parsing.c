@@ -6,11 +6,16 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 20:16:30 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/21 20:31:05 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/23 23:07:43 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+static int	allisnum(int c)
+{
+	return (c >= '0' && c <= '9');
+}
 
 int	parsing(int ac, char *av[])
 {
@@ -26,7 +31,9 @@ int	parsing(int ac, char *av[])
 		j = 0;
 		while (av[i][j])
 		{
-			if (av[i][0] != '+' && (!ft_isnum(av[i][j])))
+			if (av[i][j] == '+' && j == 0)
+				j++;
+			if(!allisnum(av[i][j]))
 				return (0);
 			j++;
 		}

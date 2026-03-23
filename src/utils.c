@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 19:46:17 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/17 19:04:41 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/23 22:40:58 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,14 @@ int	ft_atoi(const char *str)
 int	ft_isnum(int c)
 {
 	return (c >= '0' && c <= '9');
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	int	i;
+
+	i = 0;
+	while ((s1[i] || s2[i]) && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }
