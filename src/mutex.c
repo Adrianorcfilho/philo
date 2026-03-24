@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 21:11:56 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/24 23:29:19 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/24 23:37:38 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,5 @@ void	last_check(t_table *table)
 	pthread_mutex_lock(&table->mutex_end);
 	table->simulation_end = 1;
 	pthread_mutex_unlock(&table->mutex_end);
-	return;
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 18:56:41 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/24 23:29:45 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/24 23:37:21 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,6 @@ void	*philo_routine(void *arg)
 	philo = (t_philo *)arg;
 	while (!philo->table->simulation_end)
 	{
-		// if (table->must_eat_count)
-		// {
-		// 	// adicionar condicao para quando tenho eat_count
-		// }
 		if (philo->id % 2 == 0)
 			usleep(100);
 		philo_thinking(philo);
