@@ -6,46 +6,48 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 18:56:41 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/23 22:29:59 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/24 23:29:45 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-long	get_last_meal(t_table *table, int i)
+void	set_end(t_table *table, int i)
 {
-	long	last_meal_time;
+	t_philo	*philo;
 
-	pthread_mutex_lock(&table->mutex_meal);
-	last_meal_time = table->philos[i].last_meal;
-	pthread_mutex_unlock(&table->mutex_meal);
-	return (last_meal_time);
+	philo = &table->philos[i];
+	pthread_mutex_lock(&table->mutex_end);
+	table->simulation_end = 1;
+	pthread_mutex_lock(&table->write_mutex);
+	printf("%ld %d died\n", timestamp(table->start_time), philo->id);
+	pthread_mutex_unlock(&table->write_mutex);
+	pthread_mutex_unlock(&table->mutex_end);
+	return ;
 }
 
 void	*watcher_routine(void *arg)
 {
 	t_table	*table;
-	t_philo	*philo;
 	int		i;
 	long	last_meal_time;
 
 	table = (t_table *)arg;
-	while (!table->simulation_end)
+	while (!check_simulation_end(table))
 	{
 		i = -1;
 		while (++i < table->num_of_philo)
 		{
 			last_meal_time = get_last_meal(table, i);
-			philo = &table->philos[i];
 			if ((timestamp(table->start_time)
 					- last_meal_time) >= table->time_to_die)
 			{
-				pthread_mutex_lock(&table->mutex_end);
-				table->simulation_end = 1;
-				pthread_mutex_unlock(&table->mutex_end);
-				return (safe_printf(philo, "died"), NULL);
+				set_end(table, i);
+				return (NULL);
 			}
 		}
+		if (table->must_eat_count > 0 && check_all_ate(table))
+			return (last_check(table), NULL);
 		usleep(100);
 	}
 	return (NULL);

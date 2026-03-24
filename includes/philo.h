@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 22:05:21 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/23 22:41:09 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/24 23:35:25 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,8 @@ void					creat_new_thread(t_table *table);
 void					sleep_or_wait(t_philo *philo, long duration_ms);
 void					safe_printf(t_philo *philo, char *msg);
 int						check_simulation_end(t_table *table);
+long					get_last_meal(t_table *table, int i);
+void					last_check(t_table *table);
+int						check_all_ate(t_table *table);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 13:50:07 by adrocha           #+#    #+#             */
-/*   Updated: 2026/03/23 21:41:40 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/24 23:33:20 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	init_table(t_table *table, char *av[])
 	table->time_to_die = atoi(av[2]);
 	table->time_to_eat = atoi(av[3]);
 	table->time_to_sleep = atoi(av[4]);
-	// table->must_eat_count = mec;
+	if (av[5] != NULL)
+		table->must_eat_count = atoi(av[5]);
+	else
+		table->must_eat_count = -1;
 	table->philos = malloc((table->num_of_philo) * sizeof(t_philo));
 	if (!table->philos)
 		return ;
@@ -68,4 +71,3 @@ void	init_mutex(t_table *table)
 	pthread_mutex_init(&table->mutex_meal, NULL);
 	pthread_mutex_init(&table->mutex_end, NULL);
 }
-
