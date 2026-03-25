@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 18:56:41 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/24 23:37:21 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/25 18:33:42 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,14 @@ void	*philo_routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+	if (philo->table->num_of_philo == 1)
+	{
+		pthread_mutex_lock(&philo->table->forks[philo->left_fork]);
+		safe_printf(philo, "has taken a fork");
+		sleep_or_wait(philo, philo->table->time_to_die);
+		pthread_mutex_unlock(&philo->table->forks[philo->left_fork]);
+		return (NULL);
+	}
 	while (!philo->table->simulation_end)
 	{
 		if (philo->id % 2 == 0)
