@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 18:55:28 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/24 21:13:13 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/29 17:30:31 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,24 @@ void	philo_thinking(t_philo *philo)
 
 void	philo_lock_forks(t_philo *philo)
 {
-	t_table	*table;
+	t_table			*table;
+	pthread_mutex_t	*first;
+	pthread_mutex_t	*second;
 
 	table = philo->table;
 	if (check_simulation_end(table))
 		return ;
-	pthread_mutex_lock(&table->forks[philo->left_fork]);
+	take_forks_order(philo, &first, &second);
+	pthread_mutex_lock(first);
 	safe_printf(philo, "has taken a fork");
-	if (philo->left_fork != philo->right_fork)
+	if (first != second)
 	{
 		if (check_simulation_end(table))
 		{
-			pthread_mutex_unlock(&table->forks[philo->left_fork]);
+			pthread_mutex_unlock(first);
 			return ;
 		}
-		pthread_mutex_lock(&table->forks[philo->right_fork]);
+		pthread_mutex_lock(second);
 		safe_printf(philo, "has taken a fork");
 	}
 }
@@ -60,11 +63,13 @@ void	philo_eating(t_philo *philo)
 
 void	philo_unlock_forks(t_philo *philo)
 {
-	t_table	*table;
+	pthread_mutex_t	*first;
+	pthread_mutex_t	*second;
 
-	table = philo->table;
-	pthread_mutex_unlock(&table->forks[philo->left_fork]);
-	pthread_mutex_unlock(&table->forks[philo->right_fork]);
+	take_forks_order(philo, &first, &second);
+	pthread_mutex_unlock(first);
+	if (first != second)
+		pthread_mutex_unlock(second);
 }
 
 void	philo_sleeps(t_philo *philo)

@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 22:05:21 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/24 23:35:25 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/29 17:30:10 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,11 @@ int						check_simulation_end(t_table *table);
 long					get_last_meal(t_table *table, int i);
 void					last_check(t_table *table);
 int						check_all_ate(t_table *table);
+void					destroy_forks(t_table *table);
+void					destroy_global_mutexes(t_table *table);
+void					free_memory(t_table *table);
+void					cleanup(t_table *table);
+void					take_forks_order(t_philo *philo,
+							pthread_mutex_t **fork1, pthread_mutex_t **fork2);
 
 #endif

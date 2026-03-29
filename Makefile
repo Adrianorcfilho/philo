@@ -6,14 +6,14 @@
 #    By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/10 22:03:59 by adrocha-          #+#    #+#              #
-#    Updated: 2026/03/25 18:19:07 by adrocha-         ###   ########.fr        #
+#    Updated: 2026/03/29 19:13:18 by adrocha-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 CC = cc
-CFLAGS = #-fsanitize=thread #-Wall -Wextra -Werror -g  
+CFLAGS =  -fsanitize=thread #-Wall -Wextra -Werror -g 
 RM = rm -f
 
 SRC_DIR = src
@@ -27,6 +27,7 @@ SRCS = 	main.c \
 		routine.c \
 		thread.c \
 		mutex.c \
+		cleanup.c \
 
 SRC_FILES = $(addprefix $(SRC_DIR)/, $(SRCS))
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

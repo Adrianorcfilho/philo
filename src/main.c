@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 20:19:24 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/23 22:47:47 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/29 16:43:10 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ int	main(int ac, char *av[])
 	init_forks(&table);
 	init_mutex(&table);
 	creat_new_thread(&table);
-	sleep(2);
+	cleanup(&table);
 	return (1);
 }
+
+
+
+
+
+
+
+

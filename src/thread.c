@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 18:56:41 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/25 18:33:42 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/29 19:34:08 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void	sleep_or_wait(t_philo *philo, long duration_ms)
 	long	start;
 
 	start = get_time();
-	while (!philo->table->simulation_end && (get_time() - start < duration_ms))
+	while (!check_simulation_end(philo->table) && (get_time()
+			- start < duration_ms))
 		usleep(100);
 }
 
@@ -75,7 +76,7 @@ void	*philo_routine(void *arg)
 		pthread_mutex_unlock(&philo->table->forks[philo->left_fork]);
 		return (NULL);
 	}
-	while (!philo->table->simulation_end)
+	while (!check_simulation_end(philo->table))
 	{
 		if (philo->id % 2 == 0)
 			usleep(100);
@@ -84,7 +85,6 @@ void	*philo_routine(void *arg)
 		philo_eating(philo);
 		philo_unlock_forks(philo);
 		philo_sleeps(philo);
-		sleep_or_wait(philo, philo->table->time_to_sleep);
 	}
 	return (NULL);
 }
