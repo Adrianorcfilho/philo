@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 21:11:56 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/24 23:37:38 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/29 19:57:42 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,9 @@ void	safe_printf(t_philo *philo, char *msg)
 	t_table	*table;
 
 	table = philo->table;
-	pthread_mutex_lock(&table->write_mutex);
 	if (check_simulation_end(table))
-	{
-		pthread_mutex_unlock(&table->write_mutex);
 		return ;
-	}
+	pthread_mutex_lock(&table->write_mutex);
 	printf("%ld %d %s\n", timestamp(table->start_time), philo->id, msg);
 	pthread_mutex_unlock(&table->write_mutex);
 	return ;

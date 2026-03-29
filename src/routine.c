@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 18:55:28 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/29 17:30:31 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/03/29 20:07:47 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	philo_eating(t_philo *philo)
 	table = philo->table;
 	pthread_mutex_lock(&table->mutex_meal);
 	philo->last_meal = timestamp(table->start_time);
-	pthread_mutex_unlock(&table->mutex_meal);
 	philo->meals_eaten += 1;
+	pthread_mutex_unlock(&table->mutex_meal);
 	if (check_simulation_end(table))
 		return ;
 	safe_printf(philo, "is eating");
