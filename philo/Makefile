@@ -6,14 +6,14 @@
 #    By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/10 22:03:59 by adrocha-          #+#    #+#              #
-#    Updated: 2026/03/31 22:50:25 by adrocha-         ###   ########.fr        #
+#    Updated: 2026/03/31 23:53:49 by adrocha-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g 
+CFLAGS =  #-fsanitize=thread #-Wall -Wextra -Werror -g
 RM = rm -f
 
 SRC_DIR = src
@@ -28,22 +28,21 @@ SRCS = 	main.c \
 		thread.c \
 		mutex.c \
 		cleanup.c \
-
+		
 SRC_FILES = $(addprefix $(SRC_DIR)/, $(SRCS))
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
-all: $(NAME)
+all: $(OBJ_DIR) $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) 
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo "$(NAME) compiled successfully!"
-
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(OBJ_DIR)
-	@$(CC) $(CFLAGS)  -c $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@$(RM) $(OBJS)
