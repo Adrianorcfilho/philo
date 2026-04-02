@@ -6,14 +6,14 @@
 #    By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/10 22:03:59 by adrocha-          #+#    #+#              #
-#    Updated: 2026/03/31 23:53:49 by adrocha-         ###   ########.fr        #
+#    Updated: 2026/04/02 20:57:11 by adrocha-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 CC = cc
-CFLAGS =  #-fsanitize=thread #-Wall -Wextra -Werror -g
+CFLAGS =  -Wall -Wextra -Werror -g
 RM = rm -f
 
 SRC_DIR = src

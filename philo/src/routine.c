@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 18:55:28 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/31 23:52:10 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/04/02 20:14:30 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,17 @@ void	philo_lock_forks(t_philo *philo)
 	if (check_simulation_end(table))
 		return ;
 	take_forks_order(philo, &first, &second);
+	philo->has_forks = 0;
 	pthread_mutex_lock(first);
 	safe_printf(philo, "has taken a fork");
-	if (first != second)
+	if (check_simulation_end(table))
 	{
-		if (check_simulation_end(table))
-		{
-			pthread_mutex_unlock(first);
-			return ;
-		}
-		pthread_mutex_lock(second);
-		safe_printf(philo, "has taken a fork");
+		pthread_mutex_unlock(first);
+		return ;
 	}
+	pthread_mutex_lock(second);
+	safe_printf(philo, "has taken a fork");
+	philo->has_forks = 1;
 }
 
 void	philo_eating(t_philo *philo)
@@ -66,10 +65,13 @@ void	philo_unlock_forks(t_philo *philo)
 	pthread_mutex_t	*first;
 	pthread_mutex_t	*second;
 
-	take_forks_order(philo, &first, &second);
-	pthread_mutex_unlock(first);
-	if (first != second)
+	if (philo->has_forks)
+	{
+		take_forks_order(philo, &first, &second);
 		pthread_mutex_unlock(second);
+		pthread_mutex_unlock(first);
+		philo->has_forks = 0;
+	}
 }
 
 void	philo_sleeps(t_philo *philo)

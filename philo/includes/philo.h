@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 22:05:21 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/31 23:25:44 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/04/02 20:11:43 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ struct					s_philo
 	long				last_meal;
 	int					meals_eaten;
 	t_table				*table;
+	int					has_forks;
 };
 
 int						ft_atoi(const char *str);
