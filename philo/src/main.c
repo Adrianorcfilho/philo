@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 20:19:24 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/29 19:40:13 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/04/03 19:58:53 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	main(int ac, char *av[])
 		return (0);
 	}
 	init_table(&table, av);
+	if (table.must_eat_count == 0)
+		return (0);
 	init_philos(&table);
 	init_forks(&table);
 	init_mutex(&table);

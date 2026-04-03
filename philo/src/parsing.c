@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 20:16:30 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/03/24 22:31:17 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/04/03 20:39:46 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ int	parsing(int ac, char *av[])
 
 	if (ac < 5 || ac > 6)
 		return (0);
-	i = 1;
-	while (i < ac)
+	if (ac == 6 && (av[5][0] == '0' || (av[5][0] == '+' && av[5][1] == '0')))
+		return (1);
+	i = 0;
+	while (++i < ac)
 	{
 		j = 0;
 		while (av[i][j])
@@ -35,7 +37,6 @@ int	parsing(int ac, char *av[])
 		c = ft_atoi(av[i]);
 		if (c <= 0)
 			return (0);
-		i++;
 	}
 	return (1);
 }

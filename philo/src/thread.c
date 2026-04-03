@@ -6,7 +6,7 @@
 /*   By: adrocha- <adrocha-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 18:56:41 by adrocha-          #+#    #+#             */
-/*   Updated: 2026/04/02 19:28:26 by adrocha-         ###   ########.fr       */
+/*   Updated: 2026/04/03 20:54:16 by adrocha-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	set_end(t_table *table, int i)
 	philo = &table->philos[i];
 	pthread_mutex_lock(&table->mutex_end);
 	table->simulation_end = 1;
+	usleep(1000);
 	pthread_mutex_lock(&table->write_mutex);
 	printf("%ld %d died\n", timestamp(table->start_time), philo->id);
 	pthread_mutex_unlock(&table->write_mutex);
@@ -76,10 +77,12 @@ void	*philo_routine(void *arg)
 		pthread_mutex_unlock(&philo->table->forks[philo->left_fork]);
 		return (NULL);
 	}
+	if (philo->id % 2 == 0 && !(philo->table->num_of_philo % 2))
+		sleep_or_wait(philo, philo->table->time_to_sleep);
 	while (!check_simulation_end(philo->table))
 	{
-		if (philo->id % 2 == 0)
-			usleep(100);
+		if (philo->id % 2 == 0 && (philo->table->num_of_philo % 2))
+			sleep_or_wait(philo, 10);
 		philo_thinking(philo);
 		philo_lock_forks(philo);
 		philo_eating(philo);
